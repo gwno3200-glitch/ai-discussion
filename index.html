@@ -1,11 +1,11 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>AI 마피아 관전실</title><style>
 :root{color-scheme:dark;--bg:#100e15;--panel:#1b1722;--line:#37303e;--gold:#c9ab7a;--muted:#a69dae;--fg:#f1ebf4}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 -apple-system,BlinkMacSystemFont,system-ui,sans-serif}main{max-width:860px;margin:auto;padding:12px 12px 32px}header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:8px 0 12px}h1{font-size:22px;margin:0;letter-spacing:-.6px}h2{font-size:15px;margin:0 0 8px}small,.muted{color:var(--muted)}.panel{border:1px solid var(--line);background:var(--panel);border-radius:12px;margin:10px 0;padding:12px}button,select,input{font:inherit;color:var(--fg);background:#15121b;border:1px solid #4c4056;border-radius:7px;padding:8px;min-width:0}button{cursor:pointer;font-weight:700}button.primary{background:#a58a60;color:#160f10;border:0}button:disabled{opacity:.38;cursor:default}select{max-width:100%;width:100%}input[type=number]{width:75px}label{display:block;color:var(--muted);font-size:12px;margin:6px 0 4px}.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.settings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.field{min-width:0}.timer{display:flex;justify-content:space-between;align-items:center;padding:12px;background:linear-gradient(110deg,#28202e,#211a23);border:1px solid #59493a;border-radius:12px}.timer.night{background:linear-gradient(110deg,#131c36,#1a1728);border-color:#343e64}.phase{font-size:20px;font-weight:750;color:var(--gold)}#clock{font-size:33px;font-variant-numeric:tabular-nums;line-height:1;font-weight:800}.meter{height:4px;background:#38313f;border-radius:2px;overflow:hidden;margin-top:8px}.meter div{height:100%;background:var(--gold);width:100%;transition:width .2s}.seats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}.seat{position:relative;text-align:center;padding:7px 2px 6px;border:1px solid #49404f;border-radius:8px;background:#24202a;min-width:0;cursor:pointer}.seat.dead{opacity:.43;background:#18161b}.seat.M{border-color:#a94b56}.seat.C{border-color:#58839c}.seat.K{border-color:#9867c5}.seat.selected{outline:2px solid var(--gold)}.num{font-size:20px;font-weight:800;line-height:1.2}.avatar{margin:3px auto 5px;width:33px;height:34px;border-radius:7px;background:#39323f;color:#a89cb1;font-size:20px;display:grid;place-items:center}.seat .role{font-size:11px;overflow-wrap:anywhere;min-height:16px}.seat .name{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}.legend{font-size:11px;color:var(--muted);display:flex;gap:9px}.chat{height:clamp(280px,49vh,620px);overflow:auto;padding:5px 2px;overscroll-behavior:contain;scrollbar-width:thin}.line{padding:6px 0;display:flex;gap:7px;align-items:flex-start}.speaker{font-size:11px;color:#d6c5aa;font-weight:800;min-width:32px;text-align:center;flex:none;padding:3px;border-radius:5px;background:#342a38}.bubble{background:#29232e;padding:7px 10px;border-radius:3px 9px 9px 9px;white-space:pre-wrap;overflow-wrap:anywhere;max-width:91%}.system{color:#d5bb8f;text-align:center;font-size:12px;margin:8px 0;padding:6px 4px;border-bottom:1px solid #352e3d}.private .bubble{color:#a8c5ee;background:#202d40}.mafia .bubble{color:#f3b4ba;background:#3b232a}.cult .bubble{color:#d9b4f9;background:#332341}.ghost .bubble{color:#c0c1c7;background:#2b2b32}.tag{display:inline-block;padding:2px 6px;border:1px solid #51465a;border-radius:4px;color:var(--muted);font-size:11px}.warn{color:#e3bb82;font-size:12px}.status{min-height:22px;font-size:12px;color:#b3a9c0;overflow-wrap:anywhere}.win{font-size:23px;text-align:center;color:var(--gold);font-weight:bold}details summary{cursor:pointer;color:var(--gold)}.wide{grid-column:1/-1}.lognote{font-size:11px;color:var(--muted)}.mini{font-size:12px}.toggle{display:flex;align-items:center;gap:6px;margin:0;color:var(--fg)}.toggle input{accent-color:#c9ab7a}#notes{max-height:180px;overflow:auto;white-space:pre-wrap;font-size:12px;color:#d3c7da}#rules{font-size:12px;max-height:300px;overflow:auto}.progress{height:5px;width:100%;accent-color:#c9ab7a}@media(max-width:480px){main{padding:8px}h1{font-size:19px}.panel{padding:9px}.seats{gap:4px}.seat .role{font-size:10px}.avatar{width:27px;height:29px;font-size:17px}.num{font-size:18px}.settings{grid-template-columns:1fr}.wide{grid-column:auto}}
-</style></head><body><main>
-<header><div><h1>AI 마피아 관전실</h1><small>12인 · 교주 모드 · 로컬 모델</small></div><span class="tag">상황 기반 토론 v2</span></header>
-<details class="panel" id="config" open><summary>게임 설정 / 모델 선택</summary><div class="settings"><div class="field wide"><label>기본 모델 (NPC 및 기본 지정 AI)</label><select id="model"><option>라이브러리 준비 중</option></select></div><div class="field"><label>AI A 모델</label><select id="modelA"></select></div><div class="field"><label>AI B 모델</label><select id="modelB"></select></div><div class="field"><label>AI C 모델</label><select id="modelC"></select></div><div class="field"><label>실행 방식</label><select id="mode"><option value="llm">WebLLM AI 3명 + 규칙 NPC 9명 (상황별 선택)</option><option value="bot">규칙 봇만 (테스트 / 빠른 관전)</option></select></div><div class="field"><label>시간 모드</label><select id="clockMode"><option value="paced" selected>AI 우선 (모델 응답 중 시간 정지)</option><option value="real">실시간 관전 (늦으면 규칙 봇)</option><option value="fast">빠른 테스트 (채팅 간격 없음)</option></select></div><div class="field"><label>마피아 보조</label><select id="aux"><option value="">무작위</option></select></div><div class="field"><label>경찰 계열</label><select id="police"><option value="">무작위</option></select></div><div class="field"><label>특직 페어</label><select id="pair"><option value="">무작위</option><option>비밀결사</option><option>연인</option></select></div><div class="field"><label>최대 진행 일수</label><input id="maxDay" type="number" min="4" max="30" value="10"></div><div class="field wide row"><label class="toggle"><input id="dual" type="checkbox" checked> 듀얼 1개 (지원 능력: 고유 40% / 공통 60%)</label><label class="toggle"><input id="basic" type="checkbox"> 시민·악인 포함</label></div></div><p class="warn">실제 GPT / Grok / Claude API가 아닌 로컬 모델입니다. 모델마다 생성 속도 및 지원 여부가 다릅니다. 현재 버전은 기본 능력 중심의 비공식 시뮬레이션이며, 원작의 모든 듀얼 및 세부 판정은 아직 구현되지 않았습니다. AI 3명은 자기 정보와 실제 대화에 근거한 선택지를 모델로 판단합니다. 나머지 9명은 독립 규칙 NPC입니다. AI 우선 모드는 응답 중 시간을 정지하며, 잘못된 응답이나 모델 오류는 규칙 판단으로 대체하고 집계합니다. 채팅 간격 4~7초 유지. 낮에는 각 플레이어가 하루 한 번 토론 시간 ±15초를 선택할 수 있습니다.</p></details>
+.seat.night-target{outline:2px solid #d9b768;outline-offset:-2px}.seat.night-target.selected{outline:2px solid var(--gold);box-shadow:inset 0 0 0 3px #815d25}.target-hand{position:absolute;right:1px;top:1px;font-size:15px;line-height:1;z-index:1}.target-note{margin-top:8px;color:var(--gold);font-size:12px;min-height:18px}</style></head><body><main>
+<header><div><h1>AI 마피아 관전실</h1><small>12인 · 교주 모드 · 로컬 모델</small></div><span class="tag">상황 기반 토론 v3</span></header>
+<details class="panel" id="config" open><summary>게임 설정 / 모델 선택</summary><div class="settings"><div class="field wide"><label>기본 모델 (AI A/B/C 공통)</label><select id="model"><option>라이브러리 준비 중</option></select></div><div class="field"><label>AI A 모델</label><select id="modelA"></select></div><div class="field"><label>AI B 모델</label><select id="modelB"></select></div><div class="field"><label>AI C 모델</label><select id="modelC"></select></div><div class="field"><label>실행 방식</label><select id="mode"><option value="llm">WebLLM AI 3명 + 규칙 NPC 9명 (상황별 선택)</option><option value="bot">규칙 봇만 (테스트 / 빠른 관전)</option></select></div><div class="field"><label>시간 모드</label><select id="clockMode"><option value="paced" selected>AI 우선 (모델 응답 중 시간 정지)</option><option value="real">실시간 관전 (늦으면 규칙 봇)</option><option value="fast">빠른 테스트 (채팅 간격 없음)</option></select></div><div class="field"><label>마피아 보조</label><select id="aux"><option value="">무작위</option></select></div><div class="field"><label>경찰 계열</label><select id="police"><option value="">무작위</option></select></div><div class="field"><label>특직 페어</label><select id="pair"><option value="">무작위</option><option>비밀결사</option><option>연인</option></select></div><div class="field"><label>최대 진행 일수</label><input id="maxDay" type="number" min="4" max="30" value="10"></div><div class="field wide row"><label class="toggle"><input id="dual" type="checkbox" checked> 듀얼 1개 (지원 능력: 고유 40% / 공통 60%)</label><label class="toggle"><input id="basic" type="checkbox"> 시민·악인 포함</label></div></div><p class="warn">실제 GPT / Grok / Claude API가 아닌 로컬 모델입니다. 모델마다 생성 속도 및 지원 여부가 다릅니다. 현재 버전은 기본 능력 중심의 비공식 시뮬레이션이며, 원작의 모든 듀얼 및 세부 판정은 아직 구현되지 않았습니다. AI 3명은 자기 정보와 실제 대화에 근거한 선택지를 모델로 판단합니다. 나머지 9명은 독립 규칙 NPC입니다. AI 우선 모드는 응답 중 시간을 정지하며, 잘못된 응답이나 모델 오류는 규칙 판단으로 대체하고 집계합니다. 채팅 간격 4~7초 유지. 낮에는 각 플레이어가 하루 한 번 토론 시간 ±15초를 선택할 수 있습니다.</p></details>
 <div class="row"><button id="start" class="primary">새 게임</button><button id="pause" disabled>일시정지</button><button id="stop" disabled>중단</button><button id="export" disabled>기록 저장</button></div><div class="status" id="status">준비 중…</div><progress class="progress" id="progress" hidden max="1" value="0"></progress>
 <div class="timer" id="timer"><div><div class="phase" id="phase">대기실</div><small id="day">AI 3명 + NPC 9명</small></div><div id="clock">--:--</div></div><div class="meter"><div id="bar"></div></div>
-<section class="panel"><div class="row" style="justify-content:space-between"><h2>플레이어 <small id="live"></small></h2><label class="toggle"><input type="checkbox" id="reveal"> 직업 공개</label></div><div class="seats" id="seats"></div><div class="legend"><span>🔴 마피아</span><span>🔵 시민</span><span>🟣 교주</span><span>회색 = 탈락</span></div></section>
+<section class="panel"><div class="row" style="justify-content:space-between"><h2>플레이어 <small id="live"></small></h2><label class="toggle"><input type="checkbox" id="reveal"> 직업 공개</label></div><div class="seats" id="seats"></div><div class="target-note" id="targetNote">플레이어 선택 시 최근 밤 능력 대상 표시</div><div class="legend"><span>🔴 마피아</span><span>🔵 시민</span><span>🟣 교주</span><span>회색 = 탈락</span></div></section>
 <section class="panel"><div class="row" style="justify-content:space-between"><h2>채팅</h2><span id="stats" class="lognote"></span></div><div class="row"><div style="flex:1"><label>관전 시점</label><select id="view"><option value="public">공개 채팅만</option><option value="all">관전자 전체 (비밀 포함)</option></select></div><div style="flex:1"><label>채널</label><select id="channel"><option value="all">전체</option><option value="public">공개</option><option value="mafia">마피아</option><option value="cult">교주</option><option value="ghost">탈락자</option><option value="private">능력 정보</option></select></div></div><div class="chat" id="chat"></div><div class="win" id="win"></div></section>
 <details class="panel"><summary>선택한 플레이어의 개인 메모</summary><div id="notes">플레이어 카드를 눌러 시점을 전환합니다.</div></details><details class="panel"><summary>구현 직업 및 능력 목록</summary><div id="rules"></div></details>
 </main><script type="module">
@@ -226,7 +226,8 @@ function setTimer(sec){phaseLeft=Math.max(0,sec);$('clock').textContent=`${Strin
 function render(){if(!g){$('seats').replaceChildren(...ids().map(i=>{let e=node('div','seat');e.append(node('div','num',i),node('div','avatar','?'),node('div','role','미배정'));return e;}));return;}
  let v=$('view').value, show=$('reveal').checked&&(v==='all'||v==='public')||!!g.winner, player=/^\d+$/.test(v)?g.p(+v):null;
  $('phase').textContent=PHASE[g.phase]||g.phase;$('day').textContent=`${g.day}일 차 · 교주 종소리 ${g.bells}회`;$('timer').classList.toggle('night',g.phase==='night');$('live').textContent=`${g.alive().length}/12 생존`;
- $('seats').replaceChildren(...g.ps.map(p=>{let visible=show||player?.id===p.id||p.announcedRole||player&&player.known[p.id], roleText=show||player?.id===p.id||p.announcedRole?p.role:visible?player.known[p.id]:'미상';let tc=show||player?.id===p.id?p.team:p.announcedRole?ROLES[p.role]?.team:'';let card=node('div',`seat ${p.alive?'':'dead'} ${tc||''} ${player?.id===p.id?'selected':''}`);card.title='클릭: 플레이어 시점';card.append(node('div','num',p.id),node('div','avatar',p.alive?(roleText==='미상'?'?':roleText.slice(0,1)):'×'),node('div','role',roleText),node('div','name',g.seats.includes(p.id)?`AI ${'ABC'[g.seats.indexOf(p.id)]}`:'NPC'));if(show&&p.dual)card.append(node('div','name',p.dual));card.onclick=()=>{$('view').value=String(p.id);render()};return card;}));
+ const history=player?nightTarget(g,player.id):null;const targets=history?.targets||[]; $('targetNote').textContent=player?(history?`${player.id}번 · ${history.day}일 밤 · ${history.kind}: ${targets.length?targets.map(id=>id+'번').join(', '):history.detail||'대상 없음'}${history.pending?' (선택 중)':''}`:`${player.id}번 · 밤 능력 사용 기록 없음`):'플레이어 선택 시 최근 밤 능력 대상 표시';
+ $('seats').replaceChildren(...g.ps.map(p=>{let visible=show||player?.id===p.id||p.announcedRole||player&&player.known[p.id], roleText=show||player?.id===p.id||p.announcedRole?p.role:visible?player.known[p.id]:'미상';let tc=show||player?.id===p.id?p.team:p.announcedRole?ROLES[p.role]?.team:'';let card=node('div',`seat ${p.alive?'':'dead'} ${tc||''} ${player?.id===p.id?'selected':''}`);card.title='클릭: 플레이어 시점';card.append(node('div','num',p.id),node('div','avatar',p.alive?(roleText==='미상'?'?':roleText.slice(0,1)):'×'),node('div','role',roleText),node('div','name',g.seats.includes(p.id)?`AI ${'ABC'[g.seats.indexOf(p.id)]}`:'NPC'));if(targets.includes(p.id)){card.classList.add('night-target');card.append(node('span','target-hand','👆'));}if(show&&p.dual)card.append(node('div','name',p.dual));card.onclick=()=>{$('view').value=String(p.id);render()};return card;}));
  let key=v+'/'+$('channel').value+'/'+show, events=v==='all'?g.events:player?g.eventsFor(player.id):g.events.filter(e=>e.type==='public');if($('channel').value!=='all')events=events.filter(e=>e.type===$('channel').value);if(lastEvent!==g.seq||lastView!==key){let chat=$('chat'),bottom=chat.scrollHeight-chat.scrollTop-chat.clientHeight<80;chat.replaceChildren(...events.map(e=>{if(!e.from&&e.type==='public')return node('div','system',e.text);let row=node('div','line '+e.type), speaker=e.from?`${e.from}번`:e.type==='private'?`${e.to.join(',')}번`:e.type;row.append(node('div','speaker',speaker),node('div','bubble',e.text));return row;}));if(bottom||lastView!==key)chat.scrollTop=chat.scrollHeight;lastEvent=g.seq;lastView=key;}
  $('stats').textContent=`AI 선택 ${g.stats.model} · NPC ${g.stats.npc||0} · 규칙 대체 ${g.stats.fallback} · 무효 ${g.stats.invalid} · 시간초과 ${g.stats.timeout||0} · 오류 ${g.stats.error||0}`;
  $('notes').textContent=player?`${player.id}번 · ${player.role} · ${TEAM[player.team]}${player.dual?' / '+player.dual:''}\n\n${player.memo||'추리 메모 없음'}\n\n[개인 능력 기록]\n${player.info.join('\n')}`:'플레이어 시점을 선택하면 해당 플레이어의 메모를 볼 수 있습니다.';
@@ -285,7 +286,7 @@ function timeDelta(game,p,value){
  game.timeChanges[p.id]={day:game.day,delta:d};return d;
 }
 // Fallback decisions only use the same knowledge available to the player, not hidden roles.
-function publicClaims(k){let claims={};for(const e of k.publicEvents||[]){if(!e.from)continue;let m=e.text.match(/(?:저는|제가|저는 원래|제 직업은|직업은|저도)\s*([가-힣A-Za-z-]+)/);if(m){let name=Object.keys(ROLES).sort((a,b)=>b.length-a.length).find(n=>m[1].startsWith(n));if(name)claims[e.from]=name;}}return claims;}
+function publicClaims(k){let claims={};for(const e of k.publicEvents||[]){if(!e.from)continue;let m=e.text.match(/(?:저는|제가|저는 원래|제 직업은|직업은|저도)\s*([가-힣A-Za-z-]+)/);if(m){let name=Object.keys(ROLES).sort((a,b)=>b.length-a.length).find(n=>m[1].startsWith(n));if(name)claims[e.from]=name;}let short=e.text.match(/^(?:조크|경크|맞경|경찰(?:입니다|임)?)(?:[\s:,.]|\d)/);if(short)claims[e.from]='경찰';}return claims;}
 const badRole=r=>!!r&&ROLES[r]&&ROLES[r].team!=='C';
 function evidence(k){let claims=publicClaims(k), reports=[], questions=[], speech=(k.publicEvents||[]).filter(e=>e.from), score={}, reasons={};
  const add=(id,n,why)=>{score[id]=(score[id]||0)+n;if(why)(reasons[id]??=[]).push(why);};
@@ -296,6 +297,7 @@ function evidence(k){let claims=publicClaims(k), reports=[], questions=[], speec
   if(addressed(e.text).includes(k.self)&&(/[?？]|해명|설명|근거|궁금|직공/.test(e.text)))questions.push(e);
  }
 
+ for(const e of speech){const m=e.text.match(/^(?:조크|경크|경찰[ :]*)(?:\s*)(\d+)\s*(?:번)?\s*(마피아|맢|노맢|ㄴㅁ)(?:[. !,]|$)/);if(m){const target=+m[1];if(target!==e.from)reports.push({from:e.from,target,role:['노맢','ㄴㅁ'].includes(m[2])?'마피아 아님':'마피아',seq:e.seq});}}
  let unique=new Set();for(const r of reports){let key=`${r.from}/${r.target}/${r.role}`;if(unique.has(key))continue;unique.add(key);if(!k.alive.includes(r.target))continue;if(badRole(r.role)){let trusted=k.known[r.from]&&ROLES[k.known[r.from]]?.team==='C';let hostile=k.team==='시민팀'&&badRole(k.known[r.from]);if(!hostile)add(r.target,trusted?7:3,`${r.from}번의 ${r.target}번 ${r.role} 판정 주장`);}else if(!badRole(k.known[r.target]))add(r.target,-.5,`${r.from}번의 시민 판정 주장`);}
  const police=Object.entries(claims).filter(([id,r])=>ROLES[r]?.slot==='police'&&k.alive.includes(+id));if(police.length>1)for(const [id] of police)add(+id,1,'경찰 계열 주장 충돌');
  if(k.team==='마피아팀')for(const [id,r] of Object.entries(claims))if(ROLES[r]?.slot==='police')add(+id,5,'경찰 계열 주장');
@@ -340,14 +342,9 @@ function botSpeech(p,k,task,target,a){
    p.claim=k.role;return emit('info'+f2.v,`${role?'':'저는 '+k.role+'입니다. '}${f2.m[1]}번 확인 결과 ${result}입니다.`);
   }
  }
- // A single eligible hostile player may make a game-role counterclaim; only their own knowledge is used.
- if(task==='day'&&k.team==='마피아팀'&&k.role==='마피아'&&!role&&d.police.length===1&&!state.seen.includes('counter')&&p.id===Math.min(...[p.id,...k.allies.filter(id=>k.alive.includes(id))])&&!d.today.some(x=>x.from===p.id)){
-   const [other]=d.police[0]; const danger=d.reports.some(x=>badRole(x.role)&&(x.target===p.id||k.allies.includes(x.target)));
-   if(danger||p.id%3===0){const target=k.alive.find(id=>id!==p.id&&id!==+other&&!k.allies.includes(id));if(target){p.claim='경찰';return emit('counter',`제가 경찰입니다. ${target}번 조사 결과 ㄴㅁ입니다. ${other}번님 맞경이네요.`);}}
- }
  // Reply to direct accusation before asking other players for explanations.
  if(r&&!state.seen.includes('threat'+r.seq)){
-  if(k.team!=='시민팀'&&!role&&k.team==='마피아팀'&&p.id===Math.min(...[p.id,...k.allies.filter(id=>k.alive.includes(id))])&&d.police.length===1){p.claim='경찰';const candidate=k.alive.find(id=>id!==p.id&&id!==r.from&&!k.allies.includes(id));if(candidate)return emit('threat'+r.seq,`${r.from}번님이 가짜입니다. 제가 경찰이고 ${candidate}번 조사 결과 마피아 아님입니다.`);}
+
   return emit('threat'+r.seq,`${r.from}번님, 저는 마피아가 아닙니다. ${role?'제 직업 주장은 '+role+'입니다.':'다른 조사직 정보부터 비교해 주세요.'}`);
  }
  const lastQ=e.questions.filter(q=>q.from!==p.id&&q.day===k.day&&!state.seen.includes('q'+q.seq)&&!d.today.some(y=>y.from===p.id&&y.seq>q.seq)).at(-1);
@@ -388,41 +385,98 @@ function botTime(p,k,e,say){
  if(now<=25&&now>0&&(d.activeQuestions.length||d.conflict&&d.after.length<4)&&!voted)return 15;
  if(d.activeQuestions.length||d.conflict&&d.after.length<4)return 0;
  const enough=d.reports.length?d.speakers.size>=2&&checkins>=Math.min(3,k.alive.length-1):checkins>=Math.min(3,k.alive.length-1)&&d.call;
- if(enough&&(voted||(!say&&checkins>=Math.min(4,k.alive.length))||d.today.length>=k.alive.length+2))return -15;
+ if(enough&&d.today.filter(x=>g.seats.includes(x.from)).length>=Math.min(2,g.alive().filter(x=>g.seats.includes(x.id)).length)&&(voted||(!say&&checkins>=Math.min(4,k.alive.length))||d.today.length>=k.alive.length+2))return -15;
  return 0;
+}
+// v3: evidence gate, persistent role claims, and a team council. These functions use only player-visible knowledge.
+function ballotEvidence(k,id,e=evidence(k)){
+ if(!id||id===k.self||!k.alive.includes(id)||k.allies.includes(id))return {ok:false,why:'유효한 대상 없음'};
+ if(k.team==='시민팀'&&badRole(k.known[id]))return {ok:true,why:`내 능력으로 확인한 ${k.known[id]}`};
+ if(k.team==='시민팀'&&ROLES[k.known[id]]?.team==='C')return {ok:false,why:'내 조사와 충돌'};
+ const accusations=e.reports.filter(r=>r.target===id&&badRole(r.role)&&!k.allies.includes(r.from)&&r.from!==k.self&&!(k.team==='시민팀'&&badRole(k.known[r.from])));
+ // Repeated statements by one source do not count as corroboration. Counterclaims alone are not evidence.
+ const sources=[...new Set(accusations.map(r=>r.from))];
+ const opposing=e.reports.some(r=>r.target===id&&!badRole(r.role)&&r.from!==id&&r.from!==k.self&&k.alive.includes(r.from)&&!(k.team==='시민팀'&&badRole(k.known[r.from])));
+ const police=Object.entries(e.claims).filter(([n,r])=>k.alive.includes(+n)&&ROLES[r]?.slot==='police');
+ const trusted=sources.find(n=>k.team==='시민팀'&&ROLES[k.known[n]]?.team==='C');
+ const clear=sources.find(n=>k.alive.includes(n)&&ROLES[e.claims[n]]?.slot==='police'&&police.length===1);
+ const ownPublic=k.team!=='시민팀'&&e.reports.some(r=>r.from===k.self&&r.target===id&&badRole(r.role));
+ if(!opposing&&(trusted||sources.length>=2||clear))return {ok:true,why:trusted?`${trusted}번 확인된 시민의 조사`:sources.length>=2?`${sources.join('·')}번의 독립된 판정 주장`:`${clear}번 단독 경찰의 확인 주장`};
+ // A hostile role may act on its own publicly established cover, but may not randomly vote.
+ if(ownPublic&&!opposing&&police.length<=1)return {ok:true,why:'내가 공개한 조사 주장 유지'};
+ return {ok:false,why:opposing?'상반된 조사 결과':sources.length?'단독 주장 또는 맞직 미해결':'확실한 정황 없음'};
+}
+function ballotTargets(k,e=evidence(k)){return k.alive.filter(id=>ballotEvidence(k,id,e).ok).sort((a,b)=>(e.score[b]||0)-(e.score[a]||0)||a-b);}
+function nightTarget(game,id){const a=game.phase==='night'?game.actions[id]:null;if(a)return actionRecord(game.day,a,true);return game.nightHistory?.[id]?.at(-1)||null;}
+function actionRecord(day,a,pending=false){const two=a.kind==='contract';return {day,kind:({attack:'마피아 습격',heal:'치료',police:'수색',detective:'수사',spy:'첩보',contract:'청부',convert:'포교',lookup:'직업 조회',trace:'추적',curse:'저주',hypnotize:'최면',fortune:'운세',revive:'복귀',fanatic:'포교 확인',godfather:'대부 능력',beast:'짐승인간',track:'추적',threaten:'공갈',report:'취재',medium:'성불',nurse:'처방',link:'연계',trick:'트릭',moon:'밀사',mercenary:'용병',vigilanteShot:'숙청'})[a.kind]||a.kind,targets:[a.target,...(two?[a.target2]:[])].filter(n=>Number(n)>0),detail:a.role||'',pending};}
+const saveNightActions=Game.prototype.resolveNight;
+Game.prototype.resolveNight=function(){this.nightHistory??={};for(const p of this.ps){let a=this.actions[p.id];if(a&&this.validate(p,'night',a))(this.nightHistory[p.id]??=[]).push(actionRecord(this.day,a));}return saveNightActions.call(this);};
+function mafiaCover(p,k,e,d){
+ if(k.team!=='마피아팀'||!g.canNightChat(p)&&!p.joined&&k.role!=='마피아')return '';
+ const existing=e.claims[p.id]||p.claim;const main=k.role==='마피아';
+ const exposed=e.reports.some(r=>r.target===p.id&&badRole(r.role));
+ if(existing&&existing!=='경찰')return '';
+ const primary=g.council?.claimant===p.id||(!g.council&&main&&p.id===Math.min(...[p.id,...k.allies]));
+ if(!existing&&!primary&&!exposed)return '';
+ if(!existing){p.claim=primary?'경찰':(['군인','건달','의사'].find(r=>!Object.values(e.claims).includes(r))||'시민');if(p.claim!=='경찰')return `저 ${p.claim}입니다. ${d.police.length?'경찰 결과만으로 확정하지 말아 주세요.':'다른 직업 주장도 비교하죠.'}`;}
+ if(p.claim!=='경찰'&&existing!=='경찰')return '';
+ p.fakeReports??={};if(p.fakeReports[k.day])return '';
+ const real=d.police.find(([id])=>+id!==p.id&&!k.allies.includes(+id));
+ const foes=k.alive.filter(id=>id!==p.id&&!k.allies.includes(id));if(!foes.length)return '';
+ const prior=Object.values(p.fakeReports).map(r=>r.target);
+ const target=(real&&foes.includes(+real[0])?+real[0]:foes.find(id=>!prior.includes(id)))||foes[0];
+ const positive=!!real||exposed||p.id%2===0;
+ const text=positive?`조크 ${target}마피아. ${real?real[0]+'번 맞경입니다.':'저 경찰입니다.'}`:`제가 경찰입니다. ${target}번 조사 결과 ㄴㅁ입니다.`;
+ p.fakeReports[k.day]={target,positive};return text;
+}
+function activeTopics(p,k,e,d){
+ const out=[], today=d.today, own=today.filter(x=>x.from===p.id), last=own.at(-1)?.seq||0;
+ const add=(text)=>{if(text&&!duplicate(p,text)&&!out.includes(text))out.push(text);};
+ const facts=privateFacts(k).filter(x=>k.alive.includes(+x.m[1]));
+ const report=d.reports.at(-1), conflict=d.police.map(([id])=>+id), eligible=ballotTargets(k,e);
+ const asked=d.activeQuestions.filter(x=>addressed(x.text).includes(p.id)).at(-1);
+ if(asked){const f=facts.at(-1);if(k.team==='시민팀'&&f&&['경찰','형사','자경단원','요원'].includes(k.role))add(`${asked.from}번님, 저는 ${k.role}이고 ${f.m[1]}번 확인 결과 ${f.m[2]}입니다.`);if(eligible.length)add(`${asked.from}번님, ${eligible[0]}번을 의심합니다. ${ballotEvidence(k,eligible[0],e).why} 때문입니다.`);else add(`${asked.from}번님, 아직 확정할 근거는 없습니다. 맞직과 조사 결과를 먼저 확인하죠.`);}
+ if(conflict.length>1){const other=conflict.find(id=>id!==p.id);if(other&&!today.some(x=>x.seq>last&&addressed(x.text).includes(other)))add(`${other}번님, 오늘 밤 조사 대상과 결과를 다시 정확히 말해 주세요. 맞직부터 비교해야 합니다.`);if(!own.some(x=>/맞직.*기권|맞경.*보류/.test(x.text)))add(`${conflict.join('·')}번 맞직입니다. 독립적인 확인 전에는 투표를 보류하죠.`);}
+ if(report&&report.seq>last&&report.from!==p.id){if(badRole(report.role)&&report.target!==p.id)add(`${report.target}번님, ${report.from}번의 조사 주장에 대한 해명과 직업 주장을 듣고 싶습니다.`);else if(!badRole(report.role))add(`${report.from}번님, ${report.target}번은 본직 마피아가 아니라는 뜻이죠? 다른 조사 결과도 필요합니다.`);}
+ if(eligible.length&&!own.some(x=>x.text.includes(`${eligible[0]}번`)&&/표|투표/.test(x.text)))add(`${eligible[0]}번 투표를 고려합니다. 근거는 ${ballotEvidence(k,eligible[0],e).why}입니다.`);
+ if(!eligible.length&&today.length>=3&&!own.some(x=>/기권|투표 보류/.test(x.text)))add('지금 나온 정보로는 확실한 대상이 없습니다. 추가 정보가 없으면 기권하겠습니다.');
+ if(!d.call)add('경찰 또는 조사직 분들, 조사 대상과 결과를 알려 주세요.');
+ return out;
 }
 function fallback(p,task){let k=knowledge(p), claims=publicClaims(k), foes=k.alive.filter(i=>i!==p.id&&!k.allies.includes(i)), target=best(k,foes), ops=k.options.filter(o=>o.targets.length||['wake','lookup'].includes(o.kind)), o=ops[0], a=null, say='', memo=k.memo;
  if(o){let choices=o.targets, t=best(k,choices), t2=best(k,choices.filter(i=>i!==t));if(o.kind==='heal'){let likely=choices.filter(id=>['경찰','형사','요원','자경단원'].includes(k.known[id]||claims[id]));t=pick(likely)||pick(choices)||0;}if(['hypnotize','police','detective','spy','fortune','trace','sun','moon','convert','fanatic','nurse','revive'].includes(o.kind)){let unknown=choices.filter(i=>!k.known[i]);t=best(k,unknown.length?unknown:choices);}if(o.kind==='wake'&&k.hyp.length<2&&k.alive.length>7&&k.day<3)o=null;if(o&&o.kind==='contract'){let matches=choices.filter(id=>claims[id]&&o.roles.includes(claims[id]));if(matches.length>=2){t=matches[0];t2=matches[1];}else if(!p.joined&&choices.length>=2){t=best(k,choices);t2=best(k,choices.filter(i=>i!==t));}else o=null;}if(o&&(!o.two||t2)){a={kind:o.kind,target:t,target2:t2,role:o.roles?(claims[t]&&o.roles.includes(claims[t])?claims[t]:o.kind==='contract'&&!p.joined?'마피아':pick(o.roles)):undefined,role2:o.roles?(claims[t2]&&o.roles.includes(claims[t2])?claims[t2]:pick(o.roles)):undefined};}}
- const ev=evidence(k);if((task==='vote'||task==='yes')&&k.team==='시민팀'&&target&&(ev.score[target]||0)<=0)target=0;
- say=botSpeech(p,k,task,target,a);if(a?.kind==='wake')say='';
+ const ev=evidence(k);if(task==='vote'||task==='yes')target=ballotTargets(k,ev)[0]||0;if(task==='night'&&a?.kind==='attack'&&g.council?.target&&g.validate(p,'night',{...a,target:g.council.target}))a.target=g.council.target;
+ say=task==='day'?(mafiaCover(p,k,ev,discussion(k,ev))||botSpeech(p,k,task,target,a)||activeTopics(p,k,ev,discussion(k,ev))[0]||''):botSpeech(p,k,task,target,a);if(task==='night'&&a?.kind==='attack'&&g.council?.target)say='';if(a?.kind==='wake')say='';
  memo=`${k.day}일 ${k.phase} | 직업 주장: ${Object.entries(claims).map(([id,r])=>id+' '+r).join(', ')||'없음'} | 확인: ${Object.entries(k.known).map(([id,r])=>id+' '+r).join(', ')||'없음'} | 의심: ${foes.filter(id=>(ev.score[id]||0)>0).sort((a,b)=>(ev.score[b]||0)-(ev.score[a]||0)).slice(0,3).map(id=>id+'번 '+(ev.reasons[id]?.at(-1)||'')).join('; ')||'근거 부족'}`;
  let timeChange=task==='day'&&!a?botTime(p,k,ev,say):0;if(timeChange===-15&&!say&&!discussion(k,ev).shorten)say='추가 정보나 해명 없으면 시간 단축하고 투표로 가죠.';if(timeChange===15&&!say)say='아직 해명이 끝나지 않았으니 시간을 조금 늘리죠.';
- return {say,action:a,timeChange,vote:target,yes:!k.allies.includes(k.nominee)&&(k.team==='시민팀'?(ev.score[k.nominee]||0)>0:(ev.score[k.nominee]||0)>=0),memo,will:''};}
+ return {say,action:a,timeChange,vote:target,yes:ballotEvidence(k,k.nominee,ev).ok,memo,will:''};}
 // Small-model mode: rules provide valid choices, model chooses one. No secret global information enters the prompt.
 function modelChoices(p,task,base,already){
  const k=knowledge(p), e=evidence(k), d=discussion(k,e), opts=[];
  const push=(r,label)=>{const key=JSON.stringify([r.say,r.action,r.vote,r.yes,r.timeChange]);if(!opts.some(x=>x.key===key))opts.push({r,label,key});};
  const actionLabel=a=>a?`${a.kind} ${a.target||''}${a.target2?' / '+a.target2:''}${a.role?' '+a.role:''}${a.role2?' '+a.role2:''}`:'능력 사용 안 함';
- const describe=r=>task==='yes'?(r.yes?'찬성':'반대'):task==='vote'?`투표 ${r.vote||'기권'} ${r.say||''}`:task==='night'?`${actionLabel(r.action)} ${r.say||''}`:`${r.say||'발언하지 않음'} ${r.action?actionLabel(r.action):''}${r.timeChange?' 시간 '+r.timeChange+'초':''}`;
+ const describe=r=>task==='council'?r.say:task==='yes'?(r.yes?'찬성':'반대'):task==='vote'?`투표 ${r.vote||'기권'} ${r.say||''}`:task==='night'?`${actionLabel(r.action)} ${r.say||''}`:`${r.say||'발언하지 않음'} ${r.action?actionLabel(r.action):''}${r.timeChange?' 시간 '+r.timeChange+'초':''}`;
  push(base,describe(base));
- if(task==='yes'){push({...base,yes:!base.yes},!base.yes?'찬성':'반대');return opts;}
+ if(task==='yes'){if(ballotEvidence(k,k.nominee,e).ok)push({...base,yes:false},'반대 (해명 고려)');return opts;}
  if(task==='vote'){
-  const foes=k.alive.filter(id=>id!==p.id&&!k.allies.includes(id)).sort((a,b)=>(e.score[b]||0)-(e.score[a]||0));
-  for(const id of foes.slice(0,3)){const why=e.reasons[id]?.at(-1);push({...base,vote:id,say:why?`${id}번 쪽을 보고 있습니다. ${why}.`:''},`${id}번 투표 ${why||'확실한 근거 없음'}`);}
+  const foes=ballotTargets(k,e);
+  for(const id of foes.slice(0,3)){const why=ballotEvidence(k,id,e).why;push({...base,vote:id,say:why?`${id}번 쪽을 보고 있습니다. ${why}.`:''},`${id}번 투표 ${why||'확실한 근거 없음'}`);}
   push({...base,vote:0,say:''},'기권');return opts.slice(0,5);
  }
+ if(task==='council'){for(const alt of base.alternatives||[])push(alt,alt.say);return opts.slice(0,5);}
  if(task==='night'){
+  if(base.action?.kind==='attack'&&g.council?.target)return opts;
   if(!already&&base.action){const o=k.options.find(o=>o.kind===base.action.kind);if(o&&!o.two&&!o.roles){const targets=shuffle(o.targets.filter(id=>id!==base.action.target)).sort((a,b)=>(e.score[b]||0)-(e.score[a]||0));for(const id of targets.slice(0,3)){let a={...base.action,target:id};let say=g.canNightChat(p)?`${id}번 쪽으로 가는 게 어떨까요?`:'';push({...base,action:a,say},`${actionLabel(a)} ${e.reasons[id]?.at(-1)||''}`);}}}
   if(!base.action&&g.canNightChat(p)){const last=k.teamChat.at(-1);if(last)push({...base,say:'앞선 의견 확인했습니다.'},'팀 의견 확인');}return opts.slice(0,4);
  }
  if(task==='day'||task==='defense'){
   // Verified reports, direct replies and role confrontations remain the core of the conversation.
   if(base.say){let alt=base.say.replace(/제가 (.+?)입니다\. /,'저 $1입니다. ').replace(/조사 결과 /g,'결과 ').replace(/마피아 아님\(노맢\)/g,'ㄴㅁ').replace(/해명 부탁합니다\./g,'해명 가능?').replace(/입니다\.$/,'임.');if(alt!==base.say)push({...base,say:alt},alt);
-   if(!/조사 결과|확인 결과|맞경|가짜|해명|질문|직업|경찰|노맢|ㄴㅁ|시간/.test(base.say)&&task==='day')push({...base,say:''},'추가할 내용이 없으므로 발언하지 않음');
+   if(task==='day'&&!/조크|경크|제가 .*입니다|저 .*입니다|조사 결과|확인 결과|맞경입니다/.test(base.say)){for(const text of activeTopics(p,k,e,d).slice(0,3))push({...base,say:text,timeChange:0},text);}
   }else if(task==='day'&&!base.action&&!base.timeChange){
-   const report=d.reports.at(-1);if(report&&report.from!==p.id&&!d.today.some(x=>x.from===p.id&&x.seq>report.seq)&&!d.call)push({...base,say:'다른 조사직 결과 있으신가요?'},'다른 조사직 결과 요청');
+   for(const text of activeTopics(p,k,e,d).slice(0,4))push({...base,say:text,timeChange:0},text);const report=d.reports.at(-1);if(report&&report.from!==p.id&&!d.today.some(x=>x.from===p.id&&x.seq>report.seq)&&!d.call)push({...base,say:'다른 조사직 결과 있으신가요?'},'다른 조사직 결과 요청');
   }
-  return opts;
+  return opts.slice(0,5);
  }
  return opts;
 }
@@ -433,7 +487,7 @@ async function chooseLocal(p,task,base,budget,token,already){
  if(!webllm||inFlight||budget<300)return {reply:base,used:false};
  let expired=false,timer;
  const job=(async()=>{await loadModel(modelFor(p));if(expired||!current())return null;
-  const promptText=`마피아42 게임. 당신은 ${k.self}번 ${k.role}, ${k.team} 승리 목표.\n직업 능력: ${k.ability}\n생존 번호: ${k.alive.join(',')} / 동료: ${k.allies.join(',')||'없음'}\n내 확인 정보: ${Object.entries(k.known).map(([id,r])=>id+'번 '+r).join(', ')||'없음'}\n최근 대화:\n${(task==='night'?k.teamChat:k.public).slice(-6).join('\n').slice(-650)}\n상황에 적절한 행동 하나를 고르세요. 번호 한 개만 출력.\n${choices.map((x,i)=>`${i+1}. ${x.label}`).join('\n')}\n번호:`;
+  const promptText=`마피아42 게임. 당신은 ${k.self}번 ${k.role}, ${k.team} 승리 목표.\n직업 능력: ${k.ability}\n생존 번호: ${k.alive.join(',')} / 동료: ${k.allies.join(',')||'없음'}\n내 확인 정보: ${Object.entries(k.known).map(([id,r])=>id+'번 '+r).join(', ')||'없음'}\n최근 대화:\n${(['night','council'].includes(task)?k.teamChat:k.public).slice(-6).join('\n').slice(-650)}\n상황에 적절한 행동 하나를 고르세요. 번호 한 개만 출력.\n${choices.map((x,i)=>`${i+1}. ${x.label}`).join('\n')}\n번호:`;
   status(`${p.id}번 AI 선택 중 · ${modelFor(p)}`);
   const request={messages:[{role:'user',content:promptText}],temperature:.15,max_tokens:12};if(/^Qwen3/i.test(modelFor(p)))request.extra_body={enable_thinking:false};
   const res=await engine.chat.completions.create(request);const raw=(res.choices?.[0]?.message?.content||'').trim().replace(/<think>[\s\S]*?<\/think>/g,'').trim();const m=raw.match(/^(?:선택\s*[:：]?\s*)?([1-5])(?:[.。\s]|$)/);if(!m||!choices[+m[1]-1]){game.stats.invalid++;recordDiagnostic(game,p,task,'choice',raw);return null;}return choices[+m[1]-1].r;
@@ -441,23 +495,52 @@ async function chooseLocal(p,task,base,budget,token,already){
  try{const result=await Promise.race([job,new Promise(resolve=>{timer=setTimeout(()=>resolve('TIMEOUT'),budget);})]);if(result==='TIMEOUT'){expired=true;game.stats.timeout++;try{engine?.interruptGenerate()}catch{}return {reply:base,used:false};}if(!current())return {reply:base,used:false};if(result){game.stats.model++;return {reply:result,used:true};}return {reply:base,used:false};}catch(e){game.stats.error++;recordDiagnostic(game,p,task,'choice-error',e.message||e);return {reply:base,used:false};}finally{expired=true;clearTimeout(timer);}
 }
 function duplicate(p,text){let t=clean(text).replace(/\s/g,'');if(!t)return true;let recent=g.eventsFor(p.id).filter(e=>e.from===p.id||e.day===g.day&&e.phase===g.phase&&e.from).slice(-35);return recent.some(e=>clean(e.text).replace(/\s/g,'')===t);}
-function apply(p,task,r,fromModel){if(!p.alive)return;let say=clean(r.say);if(typeof r.memo==='string'&&r.memo.trim())p.memo=r.memo.slice(0,500);if(typeof r.will==='string'&&p.dual==='유언')p.will=clean(r.will);if(task==='night'){let a=g.validate(p,'night',r.action);if(a)g.actions[p.id]=a;else if(r.action)g.stats.invalid++;if(say&&g.canNightChat(p)&&!duplicate(p,say))g.chat(p,say);}else if(task==='team'){if(say&&!duplicate(p,say))g.chat(p,say);}else if(task==='day'||task==='defense'){if(r.action){let ok=g.dayAction(p,r.action);if(!ok)g.stats.invalid++;}if(say&&!duplicate(p,say))g.chat(p,say);}else if(task==='vote'){let t=g.p(Number(r.vote));g.votes[p.id]=t?.alive&&t.id!==p.id?t.id:0;if(r.action)g.dayAction(p,r.action);if(say&&!duplicate(p,say))g.chat(p,say);}else if(task==='yes'){if(typeof r.yes==='boolean')g.yes[p.id]=r.yes;else g.yes[p.id]=false;}render();}
+function apply(p,task,r,fromModel){if(!p.alive)return;let say=clean(r.say);if(typeof r.memo==='string'&&r.memo.trim())p.memo=r.memo.slice(0,500);if(typeof r.will==='string'&&p.dual==='유언')p.will=clean(r.will);if(task==='night'){let a=g.validate(p,'night',r.action);if(a)g.actions[p.id]=a;else if(r.action)g.stats.invalid++;if(say&&g.canNightChat(p)&&!duplicate(p,say))g.chat(p,say);}else if(task==='team'){if(say&&!duplicate(p,say))g.chat(p,say);}else if(task==='day'||task==='defense'){if(r.action){let ok=g.dayAction(p,r.action);if(!ok)g.stats.invalid++;}if(say&&!duplicate(p,say))g.chat(p,say);}else if(task==='vote'){let t=g.p(Number(r.vote));g.votes[p.id]=t?.alive&&t.id!==p.id&&ballotEvidence(knowledge(p),t.id).ok?t.id:0;if(r.action)g.dayAction(p,r.action);if(say&&!duplicate(p,say))g.chat(p,say);}else if(task==='yes'){g.yes[p.id]=r.yes===true&&ballotEvidence(knowledge(p),g.nominee).ok;}render();}
 // A real countdown is independent of model inference. Only the manual pause freezes it.
 // Player chat is queued and paced separately from private decisions.
+async function mafiaCouncil(token){
+ const game=g,fast=cfg.clock==='fast';game.council={target:0,claimant:0,proposals:{}};
+ const members=game.alive().filter(p=>p.team==='M'&&p.joined&&game.canNightChat(p));
+ const mains=members.filter(p=>game.options(p,'night').some(a=>a.kind==='attack'));
+ if(!mains.length)return;
+ // Existing public cover is kept; otherwise one main mafia claims police consistently.
+ game.council.claimant=members.find(p=>p.claim==='경찰')?.id||mains.slice().sort((a,b)=>a.id-b.id)[0].id;
+ const valid=()=>running&&token===runId&&g===game&&!game.winner;
+ const wait=async()=>{while(paused&&valid())await delay(100);return valid();};
+ const talk=async(p,text)=>{if(!await wait())return false;if(text&&!game.eventsFor(p.id).some(e=>e.day===game.day&&e.phase==='night'&&e.from===p.id&&e.text===text)){game.chat(p,text);render();if(!fast){let until=performance.now()+4000;while(valid()&&performance.now()<until){await wait();await delay(100);}}}return valid();};
+ const candidates=p=>{const k=knowledge(p),e=evidence(k);const op=game.options(p,'night').find(a=>a.kind==='attack');const ids=op?.targets||k.alive.filter(id=>id!==p.id&&!k.allies.includes(id));return ids.map(id=>({id,score:(ROLES[e.claims[id]]?.slot==='police'?9:e.claims[id]==='의사'?5:0)+(ROLES[k.known[id]]?.team==='C'?3:0)+(e.speech.some(x=>x.from===id&&x.day===k.day-1)?1:0),reason:ROLES[e.claims[id]]?.slot==='police'?'경찰 계열을 주장해서':e.claims[id]==='의사'?'치료 직업을 주장해서':ROLES[k.known[id]]?.team==='C'?'시민 직업을 확인해서':'공개 정보가 적어 첫날 후보로'})).sort((a,b)=>b.score-a.score||a.id-b.id);};
+ status('마피아팀 비밀 회의 · 후보 제안 및 의견 교환');
+ for(let i=0;i<members.length&&valid();i++){
+  const p=members[i];if(!await wait())return;const options=candidates(p);if(!options.length)continue;
+  const preferred=options[0].score?options[0]:options[(p.id+i)%options.length];
+  const prior=Object.entries(game.council.proposals).at(-1);const make=x=>({target:x.id,say:prior?(+prior[1]===x.id?`${prior[0]}번 의견에 동의합니다. ${x.id}번으로 가죠. ${x.reason}.`:`${prior[0]}번은 ${prior[1]}번을 제안했는데 저는 ${x.id}번도 좋겠습니다. ${x.reason}.`):`${x.id}번을 제안합니다. ${x.reason}. 다른 의견 있나요?`});
+  let base=make(preferred);base.alternatives=options.filter(x=>x.id!==preferred.id).slice(0,3).map(make);
+  if(cfg.mode==='llm'&&game.seats.includes(p.id)){let sel=await chooseLocal(p,'council',base,cfg.clock==='paced'?180000:6000,token,false);base=sel.reply;if(!sel.used)game.stats.fallback++;}else game.stats.npc++;
+  if(!valid())return;game.council.proposals[p.id]=base.target;await talk(p,base.say);
+ }
+ const totals={};for(const target of Object.values(game.council.proposals))totals[target]=(totals[target]||0)+1;
+ const legal=mains.flatMap(p=>game.options(p,'night').filter(a=>a.kind==='attack').flatMap(a=>a.targets));
+ const finalists=Object.keys(totals).map(Number).filter(id=>legal.includes(id)).sort((a,b)=>totals[b]-totals[a]||candidates(mains[0]).findIndex(x=>x.id===a)-candidates(mains[0]).findIndex(x=>x.id===b));
+ const target=finalists[0]||candidates(mains[0])[0]?.id;if(!target||!valid())return;
+ game.council.target=target;
+ for(const p of mains){if(!valid())return;const own=game.council.proposals[p.id];await talk(p,own===target?`${target}번으로 의견 정리하겠습니다.`:`저는 ${own||'다른 번호'}번을 생각했지만 팀 의견에 맞춰 ${target}번으로 변경하겠습니다.`);}
+ if(valid())status('마피아팀 회의 완료 · 밤 능력 선택');
+}
 async function phaseRun(phase,token){
  const game=g, fast=cfg.clock==='fast', strict=cfg.clock==='paced'&&cfg.mode==='llm', total=TIMES[phase];
- game.phase=phase;phaseTotal=total;setTimer(total);render();
+ game.phase=phase;phaseTotal=total;setTimer(total);render();if(phase==='night'){await mafiaCouncil(token);if(!running||token!==runId||g!==game)return;}
  let remaining=total*1000,last=performance.now(), pending=[], seen=new Set(),round=0,queue=[],waitingModel=false,lastContext=new Map(),lastIdleProbe=-1;
  const valid=()=>running&&token===runId&&g===game&&!game.winner;
  const eligible=p=>p.alive&&(phase==='night'?game.options(p,'night').length||game.canNightChat(p)||p.dual==='유언':phase==='defense'?p.id===game.nominee:phase==='yes'?p.id!==game.nominee:true);
  const chatAllowed=p=>p.alive&&p.mutedUntil<game.day&&(phase==='night'?game.canNightChat(p):phase==='day'||phase==='vote'||phase==='defense'&&p.id===game.nominee);
  const mandatory=['night','vote','yes','defense'].includes(phase);
  const outstanding=()=>mandatory&&game.alive().some(p=>eligible(p)&&!seen.has(p.id));
- const timeOpen=()=>fast&&phase!=='day'||remaining>0||strict&&outstanding();
+ const dayAIOutstanding=()=>phase==='day'&&game.alive().some(p=>game.seats.includes(p.id)&&chatAllowed(p)&&!seen.has(p.id));
+ const timeOpen=()=>fast&&phase!=='day'||remaining>0||strict&&(outstanding()||dayAIOutstanding());
  const tick=()=>{
   const now=performance.now(), elapsed=Math.max(0,now-last);last=now;
   if(!valid())return;
-  if(!paused&&!fast&&!(strict&&(waitingModel||remaining<=0&&outstanding())))remaining=Math.max(0,remaining-elapsed);
+  if(!paused&&!fast&&!(strict&&(waitingModel||remaining<=0&&(outstanding()||dayAIOutstanding()))))remaining=Math.max(0,remaining-elapsed);
   setTimer(remaining/1000);
   if(paused||!timeOpen())return;
   if(pending.length&&(fast||now>=nextChatAt)){
@@ -500,7 +583,7 @@ async function phaseRun(phase,token){
     else{if(fast)break;await delay(100);continue;}
    }
    if(phase==='day'){const recent=game.events.filter(e=>e.type==='public'&&e.from&&e.day===game.day).at(-1);if(recent&&/[?？]|해명|설명/.test(recent.text)){let addressed=[...recent.text.matchAll(/(\d+)번/g)].map(m=>+m[1]);queue.sort((a,b)=>Number(addressed.includes(b.id))-Number(addressed.includes(a.id)));}}if(phase==='day'){
-    const priority=p=>{const k=knowledge(p), d=discussion(k,evidence(k));const st=p.botSpeech?.seen||[];const f=privateFacts(k).some(x=>k.alive.includes(+x.m[1])&&!st.includes('info'+x.v));return (d.activeQuestions.some(x=>addressed(x.text).includes(p.id))?100:0)+(f&&k.team==='시민팀'&&(['경찰','자경단원','형사','요원'].includes(k.role)||d.call)?30:0)+(p.mutedUntil>=game.day?-100:0);};
+    const priority=p=>{const k=knowledge(p), d=discussion(k,evidence(k));const st=p.botSpeech?.seen||[];const f=privateFacts(k).some(x=>k.alive.includes(+x.m[1])&&!st.includes('info'+x.v));return (game.seats.includes(p.id)&&!seen.has(p.id)?45:0)+(game.council?.claimant===p.id&&!seen.has(p.id)?35:0)+(d.activeQuestions.some(x=>addressed(x.text).includes(p.id))?100:0)+(f&&k.team==='시민팀'&&(['경찰','자경단원','형사','요원'].includes(k.role)||d.call)?30:0)+(p.mutedUntil>=game.day?-100:0);};
     queue.sort((a,b)=>priority(b)-priority(a));
    }
    let p=queue.shift();if(!eligible(p))continue;
@@ -521,6 +604,7 @@ async function phaseRun(phase,token){
     try{const selected=await chooseLocal(p,phase,r,budget,token,seen.has(p.id));r=selected.reply;fromModel=selected.used;}finally{tick();waitingModel=false;}
    }
    tick();if(!valid())return;await waitPause();if(!valid())return;if(!timeOpen())break;
+   if(strict&&phase==='day'&&isAI&&remaining<8000&&r.say)remaining=8000;
    decide(p,r,fromModel);
    // Avoid an unbounded synchronous loop when every player passes or the model is unavailable.
    await delay(fast?5:150);tick();
@@ -540,7 +624,7 @@ for(let id of ['aux','police'])fillSelect(id,Object.values(ROLES).filter(r=>r.sl
 $('rules').replaceChildren(...Object.values(ROLES).map(r=>{let d=node('p','');d.append(node('strong','',r.name+' · '+TEAM[r.team]+' '),document.createTextNode(r.desc));return d;}),node('p','warn','듀얼 목록: '+Object.keys(COMMON).join(', ')+' / '+Object.entries(UNIQUE).map(([r,x])=>r+': '+Object.keys(x).join(',')).join(' · ')+' (구현된 일부 능력만)'));
 $('start').onclick=async()=>{if(running)return;cfg={model:$('model').value,models:['modelA','modelB','modelC'].map(id=>$(id).value),mode:$('mode').value,clock:$('clockMode').value,maxDay:Math.max(4,Math.min(30,+$('maxDay').value||10))};if(cfg.mode==='llm'&&!webllm){status('WebLLM 준비 실패. 규칙 봇 모드를 선택하세요.');return;}if(inFlight){status('이전 모델 작업이 끝나지 않았습니다. 잠시 후 다시 시작하거나 새로고침하세요.');return;}let token=++runId;running=true;paused=false;errorCount=0;diagnostics=[];nextChatAt=0;g=new Game({basic:$('basic').checked,aux:$('aux').value,police:$('police').value,pair:$('pair').value});initDual(g,$('dual').checked);g.beginNight();lastView='';$('view').replaceChildren();for(let [val,label] of [['public','공개 채팅만'],['all','관전자 전체 (비밀 포함)'],...ids().map(id=>[String(id),id+'번 시점'])]){let op=node('option','',label);op.value=val;$('view').append(op);}$('reveal').checked=false;$('config').open=false;buttons();render();if(cfg.mode==='llm'){try{const prep=loadModel(cfg.model);inFlight=prep;const settle=()=>{if(inFlight===prep)inFlight=null;};prep.then(settle,settle);let watchdog;try{await Promise.race([prep,new Promise((_,reject)=>{watchdog=setTimeout(()=>reject(Error('모델 준비 시간 초과')),180000);})]);}finally{clearTimeout(watchdog);}}catch(e){if(token!==runId)return;status('기본 모델 로딩 실패: '+e.message+' — 모델을 변경하거나 규칙 봇을 직접 선택하세요.');g.stats.error++;diagnostics.push({kind:'load',model:cfg.model,detail:e.message});running=false;buttons();render();return;}}if(token!==runId||!running)return;loop(token);};
 $('pause').onclick=()=>{paused=!paused;if(paused){try{engine?.interruptGenerate()}catch{}status('일시정지');}else status('게임 재개');buttons();};$('stop').onclick=()=>{running=false;paused=false;++runId;try{engine?.interruptGenerate()}catch{}status('게임 중단');buttons();};$('view').onchange=render;$('channel').onchange=render;$('reveal').onchange=render;
-$('export').onclick=()=>{if(!g)return;let data={day:g.day,winner:g.winner,stats:g.stats,settings:cfg,diagnostics,players:g.ps.map(p=>({id:p.id,role:p.role,original:p.original,team:p.team,alive:p.alive,dual:p.dual,memo:p.memo,info:p.info})),events:g.events};let url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));let a=node('a');a.href=url;a.download='mafia-game.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+$('export').onclick=()=>{if(!g)return;let data={day:g.day,winner:g.winner,stats:g.stats,settings:cfg,diagnostics,players:g.ps.map(p=>({id:p.id,role:p.role,original:p.original,team:p.team,alive:p.alive,dual:p.dual,memo:p.memo,info:p.info})),events:g.events,nightHistory:g.nightHistory||{}};let url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));let a=node('a');a.href=url;a.download='mafia-game.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 render();buttons();(async()=>{try{if(!navigator.gpu)throw Error('WebGPU가 없습니다. HTTPS Safari 또는 지원 브라우저로 열어 주세요.');webllm=await import('https://esm.run/@mlc-ai/web-llm@0.2.89');modelIds=webllm.prebuiltAppConfig.model_list.filter(r=>/qwen|instruct|chat/i.test(r.model_id)&&!/embedding|vision/i.test(r.model_id)).map(r=>r.model_id);let recommended=[BASE,LIGHT,'Qwen3-1.7B-q4f16_1-MLC','Qwen2.5-1.5B-Instruct-q4f16_1-MLC','Qwen2.5-0.5B-Instruct-q4f16_1-MLC'].filter(id=>modelIds.includes(id));let ordered=[...new Set([...recommended,...modelIds])];fillSelect('model',ordered,recommended[0]||ordered[0]);for(let id of ['modelA','modelB','modelC'])fillSelect(id,ordered,'','기본 모델 사용');status('준비 완료 · '+$('model').value);}catch(e){webllm=null;fillSelect('model',[BASE,LIGHT],BASE);for(let id of ['modelA','modelB','modelC'])fillSelect(id,[],'','기본 모델 사용');status('WebLLM 준비 실패: '+e.message+' / 규칙 봇 모드 사용 가능');}})();
 
 </script></body></html>
